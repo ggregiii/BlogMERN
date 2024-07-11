@@ -1,0 +1,11 @@
+{
+    "github.copilot.preferredAccount": "garfieldlim",
+    "emmet.preferences": {
+        "emmet.includeLanguages": {
+            "javascript": "javascriptreact"
+        }
+    },
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    }
+}
