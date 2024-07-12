@@ -1,9 +1,9 @@
-export default function LoginPage() {
+export default function RegisterPage() {
   return (
-    <form className="login">
+    <form className="register" action=" ">
       <input type="text" placeholder="username" />
       <input type="password" placeholder="password" />
-      <button>Login</button>
+      <button>Register</button>
     </form>
   );
 }
