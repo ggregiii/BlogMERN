@@ -33,9 +33,7 @@ export default function Header() {
         {username ? (
           <>
             <Link to="/create">Create New Post</Link>
-            <a href="/" onClick={logout}>
-              Logout
-            </a>
+            <a onClick={logout}>Logout</a>
           </>
         ) : (
           <>
