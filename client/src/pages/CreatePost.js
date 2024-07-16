@@ -78,7 +78,7 @@ export default function CreatePost() {
       <input type="file" onChange={(ev) => setFiles(ev.target.files)} />
       <ReactQuill
         value={content}
-        onChange={(newValue) => setContent(newValue)}
+        onChange={setContent}
         modules={modules}
         formats={formats}
       />

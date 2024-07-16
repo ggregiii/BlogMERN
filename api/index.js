@@ -17,6 +17,7 @@ const secret = "barbielyness";
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.json());
 app.use(cookieParser());
+app.use("/uploads", express.static(__dirname + "/uploads"));
 
 mongoose.connect(
   "mongodb+srv://blogMERN:blogMERN@cluster0.4rqehts.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
@@ -83,6 +84,7 @@ app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
   jwt.verify(token, secret, {}, async (err, info) => {
     if (err) throw err;
     const { title, summary, content } = req.body;
+    console.log(content);
     const postDoc = await Post.create({
       title,
       summary,
@@ -90,6 +92,7 @@ app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
       cover: newPath,
       author: info.id,
     });
+
     res.json(postDoc);
   });
 });
@@ -101,6 +104,12 @@ app.get("/post", async (req, res) => {
       .sort({ createdAt: -1 })
       .limit(20)
   );
+});
+
+app.get("/post/:id", async (req, res) => {
+  const { id } = req.params;
+  const postDoc = await Post.findById(id).populate("author");
+  res.json(postDoc);
 });
 
 app.listen(4000);
