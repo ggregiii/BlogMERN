@@ -1,4 +1,12 @@
-export default function Post() {
+import { format } from "date-fns";
+export default function Post({
+  title,
+  summary,
+  cover,
+  content,
+  createdAt,
+  author,
+}) {
   return (
     <div className="post">
       <div className="image">
@@ -8,16 +16,12 @@ export default function Post() {
         />
       </div>
       <div className="text">
-        <h2>Full-house battery backup coming later this year</h2>
+        <h2>{title}</h2>
         <p className="info">
-          <a className="author">Dawid Paszko</a>
-          <time>2024-07-10, 18:23:88</time>
+          <a className="author">{author.username}</a>
+          <time>{format(new Date(createdAt), "MMM d, yyyy HH:mm")}</time>
         </p>
-        <p className="summary">
-          Today at its special launch event, home backup power giant EcoFlow
-          launched a flurry of new products, including a “Whole-Home Backup
-          Power Solution.”
-        </p>
+        <p className="summary">{summary}</p>
       </div>
     </div>
   );
